@@ -1,10 +1,70 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    text-align: center;
+@import "https://fonts.googleapis.com/css?family=Press%20Start%202P";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P';
+  font-size: 1rem;
+  line-height: 2;
+  height: 100%;
+  background-color: #0c1618;
+  text-transform: uppercase;
 }
 
 h1 {
-    color: #0056b3;
+  color: #faf4d3; /* Color del texto */
+  font-size: 2.5rem; /* Tamaño de la fuente */
+  text-align: center; /* Centrar el texto */
+  position: absolute; /* Posicionar el encabezado absolutamente */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translateX(-50%); /* Ajuste de posición */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para darle profundidad */
+}
+
+
+a {
+  text-decoration: none;
+  color: #004643;
+}
+
+
+ul {
+  list-style-type: none; /* Quitar los puntos de la lista */
+  padding: 0; /* Eliminar el padding predeterminado */
+}
+
+li {
+  color: #4FAF44;
+  margin-top: 5px;
+}
+
+.arrow i {
+  display: none;
+  font-size: 1.5em; /* Ajuste de tamaño de la flecha */
+  margin-right: 0.3em; /* Espaciado para acercar la flecha al texto */
+}
+
+.arrow {
+  position: relative;
+  display: block;
+  color: #1f7a8c;
+}
+
+.arrow:hover {
+  font-size: 1.2em;
+  cursor: pointer;
+  color: hsl(190, 93%, 82%);
+}
+
+.arrow:hover i {
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
 }
