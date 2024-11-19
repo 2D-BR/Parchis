@@ -1,11 +1,12 @@
 import random
 
+
 class Jugador:
-    def __init__(self, nombre, color, numero):
+    def __init__(self, nombre, color, numero, tablero):
         self.nombre = nombre
         self.color = color
         self.numero = numero  #numero de jugador 
-        self.fichas = [Ficha(casilla_salida=Tablero().salidas[self.numero]) for _ in range(4)]
+        self.fichas = [Ficha(casilla_salida=tablero.salidas[self.numero], casilla_llegada=tablero.llegadas[self.numero]) for _ in range(4)]
         self.bloqueado = False  # inicialmente, todos los jugadores estan bloqueados
         self.turno = False 
         self.fichas_fuera = 0           
@@ -40,22 +41,22 @@ class Ficha:
             raise Exception("No puedes mover una ficha que ya llegó a la meta.")
 
         if not self.en_llegada:
-            # Movimiento en las casillas generales
+            # movimiento en las casillas generales
             nueva_posicion = (self.posicion + pasos) % 68
             if nueva_posicion == self.casilla_llegada:
                 self.en_llegada = True
-                self.posicion = 0  # Primera casilla de llegada
-                self.en_seguro = True  # Todas las casillas de llegada empiezan como seguras
+                self.posicion = 0  # primera casilla de llegada
+                self.en_seguro = True  # todas las casillas de llegada empiezan como seguras
             else:
                 self.posicion = nueva_posicion
                 self.en_seguro = tablero.tipo_de_casilla_general(self.posicion) == "seguro"
 
         else:
-            # Movimiento en las casillas de llegada
+            # movimiento en las casillas de llegada
             nueva_posicion = self.posicion + pasos
             if nueva_posicion < len(tablero.casillas_de_llegada):
                 self.posicion = nueva_posicion
-                if nueva_posicion == len(tablero.casillas_de_llegada) + 1: #justo despues de la septima casilla se llega a la meta
+                if nueva_posicion == len(tablero.casillas_de_llegada) + 1: # justo despues de la septima casilla se llega a la meta
                     self.en_meta = True
             else:
                 raise Exception("Movimiento inválido: no puedes salir de las casillas de llegada.")
@@ -85,3 +86,4 @@ class Tablero:
         if 0 <= posicion < len(self.casillas):
             return self.casillas[posicion]
 
+tablero = Tablero()
