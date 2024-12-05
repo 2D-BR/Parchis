@@ -145,5 +145,24 @@ def inicio_del_juego():
     return tablero, jugadores
 
 
-inicio_del_juego()
+def determinar_jugador_inicial(jugadores):
+    print("Determinando quién comienza el juego...")
+    dado = Dado()
+    max_valor = -1
+    jugador_inicial = None
+
+    # Cada jugador lanza el dado
+    for jugador in jugadores:
+        valor = dado.lanzar()
+        print(f"{jugador.nombre} lanzó el dado y obtuvo {valor}.")
+        if valor > max_valor:
+            max_valor = valor
+            jugador_inicial = jugador
+        
+
+    print(f"{jugador_inicial.nombre} comienza el juego.")
+    return jugador_inicial
+
+
+
 
