@@ -89,6 +89,14 @@ class Ficha:
             self.en_carcel = True
             self.en_seguro = False
 
+class Dado:
+    def __init__(self):
+        self.valor = 0
+
+    def lanzar(self):
+        self.valor = random.randint(1,6)
+        return self.valor
+
 tablero = Tablero()
 
 def inicio_del_juego():
@@ -138,3 +146,4 @@ def inicio_del_juego():
 
 
 inicio_del_juego()
+
