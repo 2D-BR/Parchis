@@ -109,6 +109,9 @@ class Dado:
 
 tablero = Tablero()
 
+
+
+
 def inicio_del_juego():
     print("¡Bienvenido al juego de Parchís!")
 
@@ -152,6 +155,24 @@ def inicio_del_juego():
 
     return jugadores
 
+
+def determinar_jugador_inicial(jugadores):
+    print("Determinando quién comienza el juego...")
+    dado = Dado()
+    max_valor = -1
+    jugador_inicial = None
+
+    # Cada jugador lanza el dado
+    for jugador in jugadores:
+        valor = dado.lanzar()
+        print(f"{jugador.nombre} lanzó el dado y obtuvo {valor}.")
+        if valor > max_valor:
+            max_valor = valor
+            jugador_inicial = jugador
+       
+
+    print(f"{jugador_inicial.nombre} comienza el juego.")
+    return jugador_inicial
 
 def mostrar_tablero(jugadores):
     print("\nEstado del tablero:")
@@ -206,8 +227,19 @@ def turno_de_jugador(jugador):
 # Inicia el juego
 jugadores = inicio_del_juego()
 
+# Determina quién comienza
+jugador_inicial = determinar_jugador_inicial(jugadores)
+jugadores = jugadores[jugadores.index(jugador_inicial):] + jugadores[:jugadores.index(jugador_inicial)]
+
 # Loop principal del juego
-while True:
+juego_terminado = False
+while not juego_terminado:
     for jugador in jugadores:
+        print("\n" + "-" * 30)
+        mostrar_tablero(jugadores)
+        
         if turno_de_jugador(jugador):
+            juego_terminado = True
             break  # Termina el juego si algún jugador ha ganado
+
+print("\n¡Gracias por jugar!")
